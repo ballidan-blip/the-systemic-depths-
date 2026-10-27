@@ -26,21 +26,30 @@
               <div><span>DEPTH</span><strong id="depth">01</strong></div>
               <div><span>SHARDS</span><strong id="shards">0</strong></div>
             </div>
+            <div class="inventory">
+              <div><span>HEALING POTIONS</span><strong id="potions">2</strong></div>
+              <div><span>FIREBOMBS</span><strong id="firebombs">2</strong></div>
+            </div>
+            <div class="item-actions">
+              <button id="potion-btn" class="secondary" title="Drink a potion (Q)">Drink potion <kbd>Q</kbd></button>
+              <button id="bomb-btn" class="secondary" title="Throw a firebomb (E)">Throw firebomb <kbd>E</kbd></button>
+            </div>
+            <div id="boss-status" class="boss-status">BOSS: FLOOR 05</div>
             <div class="controls">
               <button data-move="up" aria-label="Move up">↑</button>
               <div class="middle"><button data-move="left" aria-label="Move left">←</button><button data-move="wait" aria-label="Wait">·</button><button data-move="right" aria-label="Move right">→</button></div>
               <button data-move="down" aria-label="Move down">↓</button>
             </div>
-            <div class="actions"><button id="save-btn" class="secondary">Save run</button><button id="new-btn" class="primary">New descent</button></div>
-            <p class="hint">Prototype build · local solo play · no purchases or online services</p>
+            <div class="actions"><button id="save-btn" class="secondary">Save run</button><button id="new-btn" class="primary">Abandon / new run</button></div>
+            <p class="hint">Each action advances enemy turns. Collect supplies. Oil ignites when caught in a firebomb blast. Defeat the Abyssal Warden on floor five to unlock the trial gate.</p>
           </aside>
         </section>
         <section class="below">
-          <div><span class="eyebrow">CURRENT OBJECTIVE</span><h2>Find the stairwell</h2><p>Reach the amber stair tile. Each move advances the world; enemies respond after your turn.</p></div>
-          <div><span class="eyebrow">SYSTEM NOTE</span><h2>Fire changes the room</h2><p>Walk onto a shard to collect it. Reach the exit to descend. This prototype establishes the turn loop; deeper item reactions are next.</p></div>
+          <div><span class="eyebrow">CURRENT OBJECTIVE</span><h2 id="objective-title">Descend through five floors</h2><p id="objective-copy">Find the amber stairwell on each floor. Health and supplies carry forward. The fifth floor is sealed by the Abyssal Warden.</p></div>
+          <div><span class="eyebrow">SYSTEM NOTE</span><h2>Fire changes the room</h2><p>Firebombs hit enemies in a small area. If the blast catches an oil slick, the oil ignites and burns enemies that stand in the flames. Brutes hit harder; the Warden has a larger health pool and deals two damage per strike.</p></div>
         </section>
       </main>
-      <footer>THE SYSTEMIC DEPTHS <span>BUILD 0.1 · EXPERIMENTAL</span></footer>
+      <footer>THE SYSTEMIC DEPTHS <span>VERTICAL SLICE · BUILD 0.2</span></footer>
     </div>
     <script type="module" src="./src/main.ts"></script>
   </body>
