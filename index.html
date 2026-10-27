@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#10121b" />
+    <meta name="description" content="The Systemic Depths — a turn-based systemic roguelike." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+    <title>The Systemic Depths</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div><div class="eyebrow">A SYSTEMIC ROGUELIKE</div><h1>The Systemic Depths</h1></div>
+        <div class="status"><span class="dot"></span><span id="save-status">LOCAL RUN</span></div>
+      </header>
+      <main>
+        <section class="game-frame">
+          <div id="game" aria-label="Dungeon game board"></div>
+          <aside class="side-panel">
+            <div class="panel-head"><span>DESCENT LOG</span><span id="floor-label">FLOOR 01</span></div>
+            <div id="log" class="log" aria-live="polite"><p>The stone remembers every step.</p><p>Move with WASD / arrows or use the touch pad.</p></div>
+            <div class="stats">
+              <div><span>VITALITY</span><strong id="hp">12 / 12</strong></div>
+              <div><span>DEPTH</span><strong id="depth">01</strong></div>
+              <div><span>SHARDS</span><strong id="shards">0</strong></div>
+            </div>
+            <div class="controls">
+              <button data-move="up" aria-label="Move up">↑</button>
+              <div class="middle"><button data-move="left" aria-label="Move left">←</button><button data-move="wait" aria-label="Wait">·</button><button data-move="right" aria-label="Move right">→</button></div>
+              <button data-move="down" aria-label="Move down">↓</button>
+            </div>
+            <div class="actions"><button id="save-btn" class="secondary">Save run</button><button id="new-btn" class="primary">New descent</button></div>
+            <p class="hint">Prototype build · local solo play · no purchases or online services</p>
+          </aside>
+        </section>
+        <section class="below">
+          <div><span class="eyebrow">CURRENT OBJECTIVE</span><h2>Find the stairwell</h2><p>Reach the amber stair tile. Each move advances the world; enemies respond after your turn.</p></div>
+          <div><span class="eyebrow">SYSTEM NOTE</span><h2>Fire changes the room</h2><p>Walk onto a shard to collect it. Reach the exit to descend. This prototype establishes the turn loop; deeper item reactions are next.</p></div>
+        </section>
+      </main>
+      <footer>THE SYSTEMIC DEPTHS <span>BUILD 0.1 · EXPERIMENTAL</span></footer>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
