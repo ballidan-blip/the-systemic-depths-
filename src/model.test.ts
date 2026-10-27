@@ -73,11 +73,11 @@ describe("deterministic dungeon simulation", () => {
   it("firebomb ignites oil and damages nearby enemies", () => {
     const state = createRun(7);
     state.player = { ...state.player, x: 2, y: 2 };
-    state.enemies = [{ id: 1, kind: "stalker", x: 4, y: 2, hp: 8, maxHp: 8 }];
+    state.enemies = [{ id: 1, kind: "stalker", x: 4, y: 2, hp: 12, maxHp: 12 }];
     state.map[2]![4] = "oil";
     const result = useItem(state, "firebomb");
     expect(result.state.map[2]![4]).toBe("fire");
-    expect(result.state.enemies[0]?.hp).toBeLessThan(8);
+    expect(result.state.enemies[0]?.hp).toBe(4);
     expect(result.state.inventory.firebombs).toBe(1);
     expect(result.messages.join(" ")).toContain("ignites the oil");
   });
