@@ -141,17 +141,38 @@ function startNew() {
 }
 function migrateLegacySave(value: unknown): GameState | null {
   if (!value || typeof value !== "object") return null;
-  const old = value as Partial<GameState> & { schemaVersion?: number; enemies?: Array<Partial<Enemy>> };
+  const old = value as {
+    schemaVersion?: number;
+    seed?: number;
+    floor?: number;
+    width?: number;
+    height?: number;
+    map?: GameState["map"];
+    player?: GameState["player"];
+    enemies?: Array<Partial<Enemy>>;
+    shards?: number;
+    turn?: number;
+    status?: GameState["status"];
+    inventory?: GameState["inventory"];
+  };
   if (old.schemaVersion === 2 && old.map && old.player && old.inventory && Array.isArray(old.enemies)) return old as GameState;
   if (old.schemaVersion !== 1 || !old.map || !old.player || !Array.isArray(old.enemies)) return null;
   const migrated: GameState = {
-    ...(old as GameState),
     schemaVersion: 2,
-    inventory: { potions: 2, firebombs: 2 },
+    seed: old.seed ?? Date.now() >>> 0,
+    floor: old.floor ?? 1,
+    width: old.width ?? old.map[0]?.length ?? 13,
+    height: old.height ?? old.map.length,
+    map: old.map,
+    player: old.player,
     enemies: old.enemies.map((enemy, index) => ({
       id: enemy.id ?? index + 1, x: enemy.x ?? 2, y: enemy.y ?? 2,
       hp: enemy.hp ?? 2, maxHp: enemy.hp ?? 2, kind: "stalker" as const
-    }))
+    })),
+    inventory: { potions: 2, firebombs: 2 },
+    shards: old.shards ?? 0,
+    turn: old.turn ?? 0,
+    status: old.status ?? "playing"
   };
   if (migrated.floor === 5 && !migrated.enemies.some(enemy => enemy.kind === "warden")) {
     const spot = [{ x: 6, y: 6 }, { x: 7, y: 6 }, { x: 6, y: 7 }].find(p =>
